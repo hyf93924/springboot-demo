@@ -4,6 +4,7 @@
  */
 package com.design.agent;
 
+import java.io.IOException;
 import java.lang.reflect.Proxy;
 
 /**
@@ -15,7 +16,7 @@ import java.lang.reflect.Proxy;
  */
 public class Client {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         /**
          * 静态代理
          */
@@ -36,6 +37,8 @@ public class Client {
         Engineer proxy = (Engineer) Proxy.newProxyInstance(Engineer.class.getClassLoader(), new Class[]{Engineer.class}, handler);
         proxy.coding();
 
+        System.out.println(proxy.getClass());
+
         /**
          * 动态代理：
          * 1.通过实现InvocationHandler接口创建自己的调用处理器
@@ -43,6 +46,19 @@ public class Client {
          * 3.通过反射机制获取动态代理类的构造函数，其参数类型是调用处理器接口类型
          * 4.通过构造函数创建代理类实例，此时需将调用处理器对象作为参数被传入
          */
+
+//        byte[]classFile = ProxyGenerator.generateProxyClass("Proxy0",Engineer.class.getInterfaces());
+//
+//        File file =new File("../Proxy0.class");
+//
+//        FileOutputStream fos =new FileOutputStream(file);
+//
+//        fos.write(classFile);
+//
+//        fos.flush();
+//
+//        fos.close();
+
 
     }
 }
